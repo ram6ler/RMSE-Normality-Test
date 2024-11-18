@@ -1,0 +1,24 @@
+[project]
+name = "rmse_test"
+version = "0.5.0"
+authors = [{ name = "Richard Nathan Ambler", email = "rambler@wya.top" }]
+description = "A normality test based on the RMSE value associated with the QQ-plot."
+readme = "README.md"
+license = { text = "MIT License" }
+requires-python = ">=3.13"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Mathematics",
+]
+keywords = ["normality", "RMSE", "QQ-Plot"]
+dependencies = ["scipy>1.14", "numpy>2.1"]
+
+[tool.setuptools]
+packages = ["rmse_test"]
+
+[project.urls]
+"Homepage" = "https://github.com/ram6ler/RMSE-Normality-Test"
+"Bug Tracker" = "https://github.com/ram6ler/RMSE-Normality-Test/issues"
