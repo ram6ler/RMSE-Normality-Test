@@ -2,63 +2,7 @@
 
 This is an implementation of a formal statistical test that can be used to augment the QQ-plot as a test for normality. The test is based on the sampling distribution of the RMSE statistic associated with the QQ-plot if we treat the theoretical z-scores we would expect under the assumption that the population a sample is drawn from is normally distributed as *predictions* for the actual z-scores obtained by mapping each value in the sample to the number of standard deviations it lies from the mean.
 
-## Details
-
-Given: a sorted sample of data of size $n$
-
-```math
-\mathrm X=\left\{x_0,\ x_1,\ \cdots,\ x_{n-1}\right\}
-```
-
-drawn from a population with an unknown distribution.
-
-### "Actual" $z$-scores
-
-We can map each element to its $z$-score, that is, the number of standard deviations from the sample mean, via:
-
-```math
-z_k=\frac{x_k-\bar x}{s}
-```
-
-where $\bar x$ is the sample mean:
-
-```math
-\bar x=\frac1n\sum_{k=0}^{n-1}x_k
-```
-
-and $s$ is the estimate of the population standard deviation from the sample data:
-
-```math
-s=\sqrt{\frac{1}{n-1}\sum_{k=0}^{n-1}\left(x_k-\bar x\right)^2}
-```
-
-### "Predicted" $z$-scores
-
-We can also estimate the $z$-score associated with each element in the sample if we assume that the sample has been drawn from a normally distributed population. In this case, we spread the elements in the sorted sample evenly and center them over a probability of 1, so that the gaps between the elements each represent a probability of $\tfrac 1n$, and half the remaining gap lies before and after the first and last element respectively. Then, the theoretical $z$-score associated with each element in the sorted sample is given by:
-
-```math
-\hat z_k=\Phi^{-1}\left(\frac{2k+1}{2n}\right)
-```
-
-where $\Phi^{-1}$ is the inverse standard normal cumulative probability function.
-
-### QQ-Plot
-
-Then, the QQ-plot associated with this sample is obtained by plotting the $z$-scores against the theoretical $z$-scores.
-
-### RMSE
-
-If we now use the theoretical $z$-scores as *predictions* of the $z$-scores, there is an error $\varepsilon_k = \hat z_k-z_k$ associated with each point in the QQ-plot. 
-
-The RMSE statistic associated with the QQ-plot is then:
-
-```math
-\mathrm{RMSE}=\sqrt{\frac{1}{n-1}\sum_{k=0}^{n-1}\varepsilon_k^2}=\sqrt{\frac{1}{n-1}\sum_{k=0}^{n-1}\left(\hat z_k-z_k\right)^2}
-```
-
-(A denominator of $n-1$ is used to address bias from using the sample RMSE to estimate the population RMSE analogously to how the standard deviation $s$ was calculated above; the standard deviation is, after all, an RMSE value if we treat the mean as a predictive model.)
-
-If the sample has been drawn from a normally distributed population, then we would expect the RMSE to be lower. Of course, to perform inference, we need sampling distributions of this RMSE statistic under the normality hypothesis to provide context in which to assess the RMSE value obtained from a sample. In this library, models of the RMSE sampling distributions for sample sizes from 3 to 200 are available to provide this context.
+For an overview of the project, see [this video presentation](https://youtu.be/kQ64O7N9kSA?si=eAhRrcPQdi-m_MaO); for further details, see [the paper](docs/RMSE%20Normality%20Test.pdf) this library was developed in conjunction with.
 
 ## Install
 
